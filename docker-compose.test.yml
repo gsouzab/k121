@@ -1,0 +1,21 @@
+version: '2'
+services:
+  api:
+    build: ./backend
+    command: npm run test
+    volumes:
+    - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      PORT: 3000
+      DATABASE_URL: mongodb://secretsanta@mongo/secretsanta_test
+  mongo:
+    image: mongo:3.6
+    logging:
+      driver: none
+    environment:
+      MONGO_USER: secretsanta
+      MONGO_DB: secretsanta

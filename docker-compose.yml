@@ -1,0 +1,29 @@
+version: '2'
+services:
+  api:
+    build: ./backend
+    command: npm start
+    volumes:
+    - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    env_file:
+      - ./backend/.env 
+  frontend:
+    build: ./frontend
+    command: npm start
+    volumes:
+    - ./frontend:/app
+    depends_on:
+      - api
+    links:
+      - api
+    ports:
+      - "4200:4200"
+  mongo:
+    image: mongo:3.6
+    environment:
+      MONGO_USER: secretsanta
+      MONGO_DB: secretsanta

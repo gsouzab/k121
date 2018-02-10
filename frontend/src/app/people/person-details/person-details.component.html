@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-content>
+      <form class="person-form" #personForm="ngForm">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Name" name="name" [(ngModel)]="person.name" required #name="ngModel">
+          <mat-error *ngIf="name.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="person.email" required email #email="ngModel">
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button type="submit" color="primary" *ngIf="!person._id" [disabled]="!personForm.form.valid" (click)="createPerson(person); personForm.reset()">
+      <mat-icon aria-label="Add person">add</mat-icon> Add Person
+    </button>
+
+    <button mat-button type="submit" color="primary" *ngIf="person._id" [disabled]="!personForm.form.valid" (click)="updatePerson(person); personForm.reset()">
+      <mat-icon aria-label="Update person">edit</mat-icon> Update Person
+    </button>
+
+    <button mat-button color="warn" *ngIf="person._id" (click)="clearPerson(); personForm.reset()">
+      Cancel
+    </button>
+  </mat-card-actions>
+</mat-card>

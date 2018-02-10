@@ -1,0 +1,12 @@
+.people-list-container {
+  margin-top: 20px;
+}
+
+.people-list {
+  min-width: 35%;
+}
+
+.buttons-group {
+  width: 80px;
+  margin-left: 50px;
+}
