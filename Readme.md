@@ -7,9 +7,25 @@ To use it, after runing the applications as shown bellow, enter the Application 
 
 To run, you must install [docker-compose](https://docs.docker.com/compose/). 
 
+Copy the .env file to set the enviroment variables on the backend.
+
+```sh
+$ cd backend
+$ cp .env.template .env 
+```
+
+With your favorite text editor, set the mail configurations. We use the [Nodemailer](https://nodemailer.com/about/) module for mail sending. 
+
+```sh
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USER=xxxxxxxxxxx
+MAIL_PASS=xxxxxxxxxxx
+```
+
 With docker-compose installed, and after cloning this repo:
 
-```bash
+```sh
 $ docker-compose up 
 ```
 
@@ -19,6 +35,6 @@ The Frontend application will run on [http://localhost:4200](http://localhost:42
 
 The tests were only coded on the backend. To run it:
 
-```bash
+```sh
 $ docker-compose -f docker-compose.test.yml up
 ```
